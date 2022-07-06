@@ -1,0 +1,772 @@
+@prefix : <https://solid.ti.rw.fau.de/public/ns/arena#> .
+@prefix ldp: <http://www.w3.org/ns/ldp#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://solid.ti.rw.fau.de/public/ns/arena#> .
+
+<https://solid.ti.rw.fau.de/public/ns/arena#> rdf:type owl:Ontology ;
+                                               rdfs:label "ARENA Vocabulary"@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#activeTask
+:activeTask rdf:type owl:ObjectProperty ;
+            rdfs:domain :Artifact ;
+            rdfs:range :Task ;
+            rdfs:label "Active Task"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#assembly
+:assembly rdf:type owl:ObjectProperty ;
+          rdfs:domain :Product ;
+          rdfs:range :Product ;
+          rdfs:label "Assembly"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#attributes
+:attributes rdf:type owl:ObjectProperty ;
+            rdfs:domain [ rdf:type owl:Class ;
+                          owl:unionOf ( :Order
+                                        :ProductKind
+                                      )
+                        ] ;
+            rdfs:range :ProductAttribute ;
+            rdfs:label "Attributes"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#events
+:events rdf:type owl:ObjectProperty ;
+        rdfs:domain :Artifact ;
+        rdfs:range :EventContainer ;
+        rdfs:label "events"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#family
+:family rdf:type owl:ObjectProperty ;
+        rdfs:domain :ProductKind ;
+        rdfs:range :ProductFamily ;
+        rdfs:label "Product Family"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#fittingProductKinds
+:fittingProductKinds rdf:type owl:ObjectProperty ;
+                     rdfs:domain :ProductInterface ;
+                     rdfs:range :ProductKind ;
+                     rdfs:label "Fitting Product Kinds"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#information
+:information rdf:type owl:ObjectProperty ;
+             rdfs:domain :Artifact ;
+             rdfs:range :InformationContainer ;
+             rdfs:label "information"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#inputPort
+:inputPort rdf:type owl:ObjectProperty ;
+           rdfs:domain :Workstation ;
+           rdfs:range :Port ;
+           rdfs:label "Input Port"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#inputProduct
+:inputProduct rdf:type owl:ObjectProperty ;
+              rdfs:domain :Task ;
+              rdfs:range :Product ;
+              rdfs:label "Input Product"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#interfaces
+:interfaces rdf:type owl:ObjectProperty ;
+            rdfs:domain :ProductKind ;
+            rdfs:range :ProductInterface ;
+            rdfs:label "Interfaces"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#order
+:order rdf:type owl:ObjectProperty ;
+       rdfs:domain :WorkstationTask ;
+       rdfs:range :Order ;
+       rdfs:label "Order"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#orders
+:orders rdf:type owl:ObjectProperty ,
+                 owl:FunctionalProperty ;
+        rdfs:domain :RootContainer ;
+        rdfs:range :OrderContainer ;
+        rdfs:label "orders"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#outputPort
+:outputPort rdf:type owl:ObjectProperty ;
+            rdfs:domain :Workstation ;
+            rdfs:range :Port .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#output_Product
+:output_Product rdf:type owl:ObjectProperty ;
+                rdfs:domain :Task ;
+                rdfs:range :Product ;
+                rdfs:label "Output Product"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#parts
+:parts rdf:type owl:ObjectProperty ;
+       rdfs:domain :Order ;
+       rdfs:range :ProductKind ;
+       rdfs:label "Parts"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#product
+:product rdf:type owl:ObjectProperty ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( :Port
+                                     :Transporter
+                                   )
+                     ] ;
+         rdfs:range :Product ;
+         rdfs:label "product"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#productAttributeKind
+:productAttributeKind rdf:type owl:ObjectProperty ;
+                      rdfs:domain :ProductAttribute ;
+                      rdfs:range :ProductAttributeKind .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#productAttributeKinds
+:productAttributeKinds rdf:type owl:ObjectProperty ,
+                                owl:FunctionalProperty ;
+                       rdfs:domain :RootContainer ;
+                       rdfs:range :ProductAttributeKindContainer ;
+                       rdfs:label "Product Attribute Kinds"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#productAttributes
+:productAttributes rdf:type owl:ObjectProperty ;
+                   rdfs:domain :RootContainer ;
+                   rdfs:range :ProductAttributeContainer ;
+                   rdfs:label "Product Attributes"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#productFamilies
+:productFamilies rdf:type owl:ObjectProperty ;
+                 rdfs:domain :RootContainer ;
+                 rdfs:range :ProductFamilyContainer ;
+                 rdfs:label "Product Families"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#productInterfaces
+:productInterfaces rdf:type owl:ObjectProperty ;
+                   rdfs:domain :RootContainer ;
+                   rdfs:range :ProductInterfaceContainer ;
+                   rdfs:label "Product Interfaces"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#productKind
+:productKind rdf:type owl:ObjectProperty ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :Order
+                                         :Product
+                                       )
+                         ] ;
+             rdfs:range :ProductKind ;
+             rdfs:label "Product Kind"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#productKinds
+:productKinds rdf:type owl:ObjectProperty ;
+              rdfs:domain :RootContainer ;
+              rdfs:range :ProductKindContainer ;
+              rdfs:label "Product Kinds"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#products
+:products rdf:type owl:ObjectProperty ,
+                   owl:FunctionalProperty ;
+          rdfs:domain :RootContainer ;
+          rdfs:range :ProductContainer ;
+          rdfs:label "products"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#properties
+:properties rdf:type owl:ObjectProperty ,
+                     owl:FunctionalProperty ;
+            rdfs:domain :Artifact ;
+            rdfs:range :PropertyContainer ;
+            rdfs:label "properties"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#recipe
+:recipe rdf:type owl:ObjectProperty ;
+        rdfs:domain :WorkstationTask ;
+        rdfs:range :Recipe ;
+        rdfs:label "Recipe"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#recipes
+:recipes rdf:type owl:ObjectProperty ,
+                  owl:FunctionalProperty ;
+         rdfs:domain :RootContainer ;
+         rdfs:range :RecipeContainer ;
+         rdfs:label "recipes"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#requiredAttributes
+:requiredAttributes rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Order ;
+                    rdfs:range :ProductAttribute ;
+                    rdfs:label "required Attributes"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#requiredParts
+:requiredParts rdf:type owl:ObjectProperty ;
+               rdfs:domain :Order ;
+               rdfs:range :ProductKind ;
+               rdfs:label "required Parts"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#requiredProductKind
+:requiredProductKind rdf:type owl:ObjectProperty ,
+                              owl:FunctionalProperty ;
+                     rdfs:domain :Order ;
+                     rdfs:range :ProductKind ;
+                     rdfs:label "required Product Kinds"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#requiresProduct
+:requiresProduct rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Recipe ;
+                 rdfs:range :ProductKind ;
+                 rdfs:label "Requires Product"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#requiresProductFamilies
+:requiresProductFamilies rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Recipe ;
+                         rdfs:range :ProductFamily .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#requiresProductKinds
+:requiresProductKinds rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Recipe ;
+                      rdfs:range :ProductKind ;
+                      rdfs:label "requires Product Kind"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#requiresSkills
+:requiresSkills rdf:type owl:ObjectProperty ;
+                rdfs:domain :Recipe ;
+                rdfs:range :Skill ;
+                rdfs:label "Requires Skills"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#requiresTool
+:requiresTool rdf:type owl:ObjectProperty ;
+              rdfs:domain :Recipe ;
+              rdfs:range :ToolKind ;
+              rdfs:label "Requires Tool"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#shopfloor
+:shopfloor rdf:type owl:ObjectProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :RootContainer ;
+           rdfs:range :Shopfloor ;
+           rdfs:label "Shopfloor"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#skill
+:skill rdf:type owl:ObjectProperty ;
+       rdfs:domain :Workstation ;
+       rdfs:range :Skill ;
+       rdfs:label "Skill"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#skills
+:skills rdf:type owl:ObjectProperty ,
+                 owl:FunctionalProperty ;
+        rdfs:domain :RootContainer ;
+        rdfs:range :SkillContainer ;
+        rdfs:label "Skills"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#status
+:status rdf:type owl:ObjectProperty ;
+        rdfs:domain :Artifact ;
+        rdfs:range :Status ;
+        rdfs:label "Status"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#taskStatus
+:taskStatus rdf:type owl:ObjectProperty ,
+                     owl:FunctionalProperty ;
+            rdfs:domain :Task .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#tasks
+:tasks rdf:type owl:ObjectProperty ;
+       rdfs:domain :Artifact ;
+       rdfs:range :TaskContainer ;
+       rdfs:label "Tasks"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#toolKind
+:toolKind rdf:type owl:ObjectProperty ;
+          rdfs:domain :Tool ;
+          rdfs:range :ToolKind ;
+          rdfs:label "Tool Kind"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#transporters
+:transporters rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:domain :RootContainer ;
+              rdfs:range :TransporterContainer ;
+              rdfs:label "Transporters"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#workstations
+:workstations rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:domain :RootContainer ;
+              rdfs:range :WorkstationContainer ;
+              rdfs:label "Workstations"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#yieldsProductKind
+:yieldsProductKind rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Recipe ;
+                   rdfs:range :ProductKind ;
+                   rdfs:label "Yields Product Kind"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#baseProcessingTime
+:baseProcessingTime rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :Recipe ;
+                    rdfs:range xsd:integer ;
+                    rdfs:label "Base Processing Time"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#capacity
+:capacity rdf:type owl:DatatypeProperty ;
+          rdfs:domain [ rdf:type owl:Class ;
+                        owl:unionOf ( :Port
+                                      :Transporter
+                                    )
+                      ] ;
+          rdfs:range xsd:integer ;
+          rdfs:label "Capacity"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#deadline
+:deadline rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Order ;
+          rdfs:range xsd:dateTimeStamp .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#endTime
+:endTime rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Task ;
+         rdfs:range xsd:dateTimeStamp ;
+         rdfs:label "End Time"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#locationX
+:locationX rdf:type owl:DatatypeProperty ;
+           rdfs:domain [ rdf:type owl:Class ;
+                         owl:unionOf ( :Artifact
+                                       :Port
+                                       :Product
+                                       :Tool
+                                     )
+                       ] ;
+           rdfs:range xsd:integer ;
+           rdfs:label "Location X"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#locationY
+:locationY rdf:type owl:DatatypeProperty ;
+           rdfs:domain [ rdf:type owl:Class ;
+                         owl:unionOf ( :Artifact
+                                       :Port
+                                       :Product
+                                       :Tool
+                                     )
+                       ] ;
+           rdfs:range xsd:integer ;
+           rdfs:label "Location Y"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#name
+:name rdf:type owl:DatatypeProperty ;
+      rdfs:domain :ProductAttribute ;
+      rdfs:range xsd:string ;
+      rdfs:label "Name"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#priority
+:priority rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty ;
+          rdfs:domain :Task ;
+          rdfs:range xsd:int ;
+          rdfs:comment "priority" .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#sizeX
+:sizeX rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Shopfloor ;
+       rdfs:range xsd:integer ;
+       rdfs:label "Size X"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#sizeY
+:sizeY rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Shopfloor ;
+       rdfs:range xsd:integer ;
+       rdfs:label "Size Y"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#speed
+:speed rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Transporter ;
+       rdfs:range xsd:integer .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#stackable
+:stackable rdf:type owl:DatatypeProperty ;
+           rdfs:domain :ProductAttribute ;
+           rdfs:range xsd:boolean ;
+           rdfs:label "Stackable"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#startTime
+:startTime rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Task ;
+           rdfs:range xsd:dateTimeStamp ;
+           rdfs:label "Start Time"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#toLocationX
+:toLocationX rdf:type owl:DatatypeProperty ;
+             rdfs:domain :TransporterTask ;
+             rdfs:range xsd:integer ;
+             rdfs:label "To Location X"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#toLocationY
+:toLocationY rdf:type owl:DatatypeProperty ;
+             rdfs:domain :TransporterTask ;
+             rdfs:range xsd:integer ;
+             rdfs:label "To Location Y"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#type
+:type rdf:type owl:DatatypeProperty ,
+               owl:FunctionalProperty ;
+      rdfs:domain :ProductAttributeKind ;
+      rdfs:range xsd:string ;
+      rdfs:label "type"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#value
+:value rdf:type owl:DatatypeProperty ;
+       rdfs:domain :ProductAttribute ;
+       rdfs:label "Value"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/ns/ldp#BasicContainer
+ldp:BasicContainer rdf:type owl:Class .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#Artifact
+:Artifact rdf:type owl:Class ;
+          rdfs:label "Artifact"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#Event
+:Event rdf:type owl:Class ;
+       rdfs:label "Event"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#EventContainer
+:EventContainer rdf:type owl:Class ;
+                rdfs:subClassOf ldp:BasicContainer ;
+                rdfs:label "Event Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#Information
+:Information rdf:type owl:Class ;
+             rdfs:label "Information"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#InformationContainer
+:InformationContainer rdf:type owl:Class ;
+                      rdfs:subClassOf ldp:BasicContainer ;
+                      rdfs:label "Information Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#Order
+:Order rdf:type owl:Class ;
+       rdfs:label "Order"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#OrderContainer
+:OrderContainer rdf:type owl:Class ;
+                rdfs:subClassOf ldp:BasicContainer ;
+                rdfs:label "Order Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#Port
+:Port rdf:type owl:Class ;
+      rdfs:label "Port"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#PortTask
+:PortTask rdf:type owl:Class ;
+          rdfs:subClassOf :Task ;
+          rdfs:label "Port Task"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#Product
+:Product rdf:type owl:Class ;
+         rdfs:label "Product"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#ProductAttribute
+:ProductAttribute rdf:type owl:Class ;
+                  rdfs:label "Product Attribute"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#ProductAttributeContainer
+:ProductAttributeContainer rdf:type owl:Class ;
+                           rdfs:subClassOf ldp:BasicContainer ;
+                           rdfs:label "Product Attribute Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#ProductAttributeKind
+:ProductAttributeKind rdf:type owl:Class ;
+                      rdfs:label "Product Attribute Kind"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#ProductAttributeKindContainer
+:ProductAttributeKindContainer rdf:type owl:Class ;
+                               rdfs:subClassOf ldp:BasicContainer ;
+                               rdfs:label "Product Attribute Kind Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#ProductContainer
+:ProductContainer rdf:type owl:Class ;
+                  rdfs:subClassOf ldp:BasicContainer ;
+                  rdfs:label "Product Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#ProductFamily
+:ProductFamily rdf:type owl:Class ;
+               rdfs:label "Product Family"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#ProductFamilyContainer
+:ProductFamilyContainer rdf:type owl:Class ;
+                        rdfs:subClassOf ldp:BasicContainer ;
+                        rdfs:label "Product Family Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#ProductInterface
+:ProductInterface rdf:type owl:Class ;
+                  rdfs:label "Product Interface"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#ProductInterfaceContainer
+:ProductInterfaceContainer rdf:type owl:Class ;
+                           rdfs:subClassOf ldp:BasicContainer ;
+                           rdfs:label "Product Interface Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#ProductKind
+:ProductKind rdf:type owl:Class ;
+             rdfs:label "Product Kind"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#ProductKindContainer
+:ProductKindContainer rdf:type owl:Class ;
+                      rdfs:subClassOf ldp:BasicContainer ;
+                      rdfs:label "Product Kind Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#PropertyContainer
+:PropertyContainer rdf:type owl:Class ;
+                   rdfs:subClassOf ldp:BasicContainer ;
+                   rdfs:label "Property Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#Recipe
+:Recipe rdf:type owl:Class ;
+        rdfs:label "Recipe"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#RecipeContainer
+:RecipeContainer rdf:type owl:Class ;
+                 rdfs:subClassOf ldp:BasicContainer ;
+                 rdfs:label "Recipe Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#RootContainer
+:RootContainer rdf:type owl:Class ;
+               rdfs:subClassOf ldp:BasicContainer ;
+               rdfs:label "Root Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#Shopfloor
+:Shopfloor rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :sizeX ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:integer
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :sizeY ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:integer
+                           ] ;
+           rdfs:label "Shopfloor"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#Skill
+:Skill rdf:type owl:Class ;
+       rdfs:label "Skill"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#SkillContainer
+:SkillContainer rdf:type owl:Class ;
+                rdfs:subClassOf ldp:BasicContainer ;
+                rdfs:label "Skill Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#Status
+:Status rdf:type owl:Class ;
+        owl:equivalentClass [ rdf:type owl:Class ;
+                              owl:oneOf ( :busy
+                                          :error
+                                          :idle
+                                        )
+                            ] ;
+        rdfs:label "State"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#Task
+:Task rdf:type owl:Class ;
+      rdfs:label "Task"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#TaskContainer
+:TaskContainer rdf:type owl:Class ;
+               rdfs:subClassOf ldp:BasicContainer ;
+               rdfs:label "Task Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#TaskStatus
+:TaskStatus rdf:type owl:Class ;
+            owl:equivalentClass [ rdf:type owl:Class ;
+                                  owl:oneOf ( :active
+                                              :done
+                                              :failed
+                                              :waiting
+                                            )
+                                ] ;
+            rdfs:label "Task Status"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#Tool
+:Tool rdf:type owl:Class ;
+      rdfs:label "Tool"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#ToolKind
+:ToolKind rdf:type owl:Class ;
+          rdfs:label "Tool Kind"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#Transporter
+:Transporter rdf:type owl:Class ;
+             rdfs:subClassOf :Artifact ;
+             rdfs:label "Transporter"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#TransporterContainer
+:TransporterContainer rdf:type owl:Class ;
+                      rdfs:subClassOf ldp:BasicContainer ;
+                      rdfs:label "Transporter Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#TransporterTask
+:TransporterTask rdf:type owl:Class ;
+                 rdfs:subClassOf :Task ;
+                 rdfs:label "Transporter Task"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#Workstation
+:Workstation rdf:type owl:Class ;
+             rdfs:subClassOf :Artifact ;
+             rdfs:label "Workstation"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#WorkstationContainer
+:WorkstationContainer rdf:type owl:Class ;
+                      rdfs:subClassOf ldp:BasicContainer ;
+                      rdfs:label "Workstation Container"@en .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#WorkstationTask
+:WorkstationTask rdf:type owl:Class ;
+                 rdfs:subClassOf :Task ;
+                 rdfs:label "Workstation Task"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#active
+:active rdf:type owl:NamedIndividual .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#busy
+:busy rdf:type owl:NamedIndividual .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#done
+:done rdf:type owl:NamedIndividual .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#error
+:error rdf:type owl:NamedIndividual .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#failed
+:failed rdf:type owl:NamedIndividual .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#idle
+:idle rdf:type owl:NamedIndividual .
+
+
+###  https://solid.ti.rw.fau.de/public/ns/arena#waiting
+:waiting rdf:type owl:NamedIndividual .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
