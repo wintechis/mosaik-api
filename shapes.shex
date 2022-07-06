@@ -1,0 +1,278 @@
+PREFIX arena: <https://solid.ti.rw.fau.de/public/ns/arena#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xml: <http://www.w3.org/XML/1998/namespace>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ldp: <http://www.w3.org/ns/ldp#>
+BASE <https://solid.ti.rw.fau.de/public/shapes/arena>
+
+<#RootContainerShape> {
+    rdf:type [ arena:RootContainer ] ;
+    arena:orders @<#OrderContainerShape> ;
+    arena:productAttributeKinds @<#ProductAttributeKindContainerShape> ;
+    arena:productAttributes @<#ProductAttributeContainerShape> ;
+    arena:productFamilies @<#ProductFamilyContainerShape> ;
+    arena:productInterfaces @<#ProductInterfaceContainerShape> ;
+    arena:productKinds @<#ProductKindContainerShape> ;
+    arena:products @<#ProductContainerShape> ;
+    arena:recipes @<#RecipeContainerShape> ;
+    arena:shopfloor @<#ShopfloorShape> ;
+    arena:skills @<#SkillContainerShape> ;
+    arena:transporters @<#TransporterContainerShape> ;
+    arena:workstations @<#WorkstationContainerShape> ;
+}
+
+<#OrderContainerShape> {
+    rdf:type [ arena:OrderContainer ] ;
+    ldp:contains @<#OrderShape>*
+}
+
+<#OrderShape> {
+    rdf:type [ arena:Order ] ;
+    arena:requiredProductKind @<#ProductKindShape> ;
+    arena:requiredParts @<#ProductKindShape>* ;
+    arena:requiredAttributes @<#ProductAttributeShape>* ;
+    arena:deadline xsd:dateTimeStamp
+}
+
+<#ProductAttributeContainerShape> {
+    rdf:type [ arena:ProductAttributeContainer ] ;
+    ldp:contains @<#ProductAttributeShape>*
+}
+
+<#ProductAttributeShape> {
+    rdf:type [ arena:ProductAttribute ] ;
+    arena:productAttributeKind @<#ProductAttributeKindShape> ;
+    arena:value IRI | arena:value Literal
+}
+
+<#ProductAttributeKindContainerShape> {
+    rdf:type [ arena:ProductAttributeKindContainer ] ;
+    ldp:contains @<#ProductAttributeKindShape>*
+}
+
+<#ProductAttributeKindShape> {
+    rdf:type [ arena:ProductAttributeKind ] ;
+    arena:type xsd:string ; #Warum hier und nicht z. B. in der ProductFamily???
+    arena:stackable xsd:boolean
+}
+
+<#ProductFamilyContainerShape> {
+    rdf:type [ arena:ProductFamilyContainer ] ;
+    ldp:contains @<#ProductFamilyShape>*
+}
+
+<#ProductFamilyShape> {
+    rdf:type [ arena:ProductFamily ]
+}
+
+<#ProductInterfaceContainerShape> {
+    rdf:type [ arena:ProductInterfaceContainer ] ;
+    ldp:contains @<#ProductInterfaceShape>*
+}
+
+<#ProductInterfaceShape> {
+    rdf:type [ arena:ProductInterface ] ;
+    arena:productKind @<#ProductKindShape>*
+}
+
+<#ProductKindContainerShape> {
+    rdf:type [ arena:ProductKindContainer ] ;
+    ldp:contains @<#ProductKindShape>*
+}
+
+<#ProductKindShape> {
+    rdf:type [ arena:ProductKind ] ;
+    arena:family @<#ProductFamilyShape>? ;
+    arena:interfaces @<#ProductInterfaceShape>* ;
+    arena:attributes @<#ProductAttributeShape>*
+}
+
+<#ProductContainerShape> {
+    rdf:type [ arena:ProductContainer ] ;
+    ldp:contains @<#ProductShape>*
+}
+
+<#ProductShape> {
+    rdf:type [ arena:Product ] ;
+    arena:productKind @<#ProductKindShape> ;
+    arena:locationX xsd:int? ;
+    arena:locationY xsd:int? ;
+    arena:assembly @<#ProductShape>*
+}
+
+<#RecipeContainerShape> {
+    rdf:type [ arena:RecipeContainer ] ;
+    ldp:contains @<#RecipeShape>*
+}
+
+<#RecipeShape> {
+    rdf:type [ arena:Recipe ] ;
+    arena:requiresProductFamilies @<#ProductFamilyShape>* ;
+    arena:requiresProductKinds @<#ProductKindShape>* ;
+    arena:requiresSkills @<#SkillShape>* ;
+    arena:yieldsProductKind @<#ProductKindShape>? ;
+    arena:baseProcessingTime xsd:int
+}
+
+<#ShopfloorShape> {
+    rdf:type [ arena:Shopfloor ] ;
+    arena:sizeX xsd:int ;
+    arena:sizeY xsd:int
+}
+
+<#SkillContainerShape> {
+    rdf:type [ arena:SkillContainer ] ;
+    ldp:contains @<#SkillShape>*
+}
+
+<#SkillShape> {
+    rdf:type [ arena:Skill ]
+}
+
+<#TransporterContainerShape> {
+    rdf:type [ arena:TransporterContainer ] ;
+    ldp:contains @<#TransporterShape>*
+}
+
+<#TransporterShape> {
+    rdf:type [ arena:Transporter ] ;
+    arena:locationX xsd:int ;
+    arena:locationY xsd:int ;
+    arena:speed xsd:int ;
+    arena:status [ arena:idle arena:busy arena:error ] ;
+    arena:capacity xsd:int ;
+    arena:products @<#ProductShape>* ;
+    arena:properties @<#TransporterPropertyContainerShape> ;
+    arena:tasks @<#TransporterTaskContainerShape> ;
+    arena:events @<#TransporterEventContainerShape> ;
+    arena:information @<#InformationContainerShape> ;
+    arena:activeTask @<#TransporterTaskShape>?
+}
+
+<#TransporterEventContainerShape> {
+    rdf:type [ arena:EventContainer ] ;
+    ldp:contains @<#TransporterEventShape>*
+}
+
+<#TransporterEventShape> {
+  (  rdf:type [ arena:Event ] ;
+   ( arena:value IRI | arena:value Literal))
+}
+
+<#TransporterPropertyContainerShape> {
+    rdf:type [ arena:PropertyContainer ] ;
+    ldp:contains @<#TransporterPropertyShape>*
+}
+
+<#TransporterPropertyShape> {
+   ( rdf:type [ arena:Property ] ;
+   ( arena:value IRI | arena:value Literal))
+}
+
+<#WorkstationContainerShape> {
+    rdf:type [ arena:WorkstationContainer ] ;
+    ldp:contains @<#WorkstationShape>*
+}
+
+<#WorkstationShape> {
+    rdf:type [ arena:Workstation ] ;
+    arena:locationX xsd:int ;
+    arena:locationY xsd:int ;
+    arena:skills @<#SkillShape>* ;
+    arena:status [ arena:idle arena:busy arena:error ] ;
+    arena:inputPort @<#PortShape>? ;
+    arena:outputPort @<#PortShape>? ;
+    arena:properties @<#WorkstationPropertyContainerShape> ;
+    arena:tasks @<#WorkstationTaskContainerShape> ;
+    arena:events @<#WorkstationEventContainerShape> ;
+    arena:information @<#InformationContainerShape> ;
+    arena:activeTask @<#WorkstationTaskShape>?
+}
+
+<#WorkstationEventContainerShape> {
+    rdf:type [ arena:EventContainer ] ;
+    ldp:contains @<#WorkstationEventShape>*
+}
+
+<#WorkstationEventShape> {
+  (  rdf:type [ arena:Event ] ;
+   ( arena:value IRI | arena:value Literal))
+}
+
+<#WorkstationPropertyContainerShape> {
+    rdf:type [ arena:PropertyContainer ] ;
+    ldp:contains @<#WorkstationPropertyShape>*
+}
+
+<#WorkstationPropertyShape> {
+  (  rdf:type [ arena:Property ] ;
+   ( arena:value IRI | arena:value Literal))
+}
+
+<#InformationContainerShape> {
+    rdf:type [ arena:InformationContainer ] ;
+    ldp:contains @<#InformationShape>*
+}
+
+<#InformationShape> {
+(    rdf:type [ arena:Information ] ;
+  (  arena:value Literal | arena:value IRI))
+}
+
+<#PortShape> {
+    rdf:type [ arena:Port ] ;
+    arena:locationX xsd:int ;
+    arena:locationY xsd:int ;
+    arena:capacity xsd:int ;
+    arena:products @<#ProductShape>* ;
+    arena:tasks @<#PortTaskContainerShape> ;
+    arena:activeTask @<#PortTaskShape>?
+}
+
+<#PortTaskContainerShape> {
+    rdf:type [ arena:TaskContainer ] ;
+    ldp:contains @<#PortTaskShape>*
+}
+
+<#WorkstationTaskContainerShape> {
+    rdf:type [ arena:TaskContainer ] ;
+    ldp:contains @<#WorkstationTaskShape>*
+}
+
+<#TransporterTaskContainerShape> {
+    rdf:type [ arena:TaskContainer ] ;
+    ldp:contains @<#TransporterTaskShape>*
+}
+
+<#TransporterTaskShape> {
+    rdf:type [ arena:TransporterTask ] ;
+    arena:priority xsd:int ;
+    arena:startTime xsd:dateTime? ;
+    arena:endTime xsd:dateTime? ;
+    arena:taskStatus [ arena:waiting arena:active arena:done arena:failed ] ;
+    arena:locationX xsd:int ;
+    arena:locationY xsd:int
+}
+
+<#WorkstationTaskShape> {
+    rdf:type [ arena:WorkstationTask ] ;
+    arena:priority xsd:int ;
+    arena:startTime xsd:dateTime? ;
+    arena:endTime xsd:dateTime? ;
+    arena:inputProduct @<#ProductShape>* ;
+    arena:outputProduct @<#ProductShape> ;
+    arena:taskStatus [ arena:waiting arena:active arena:done arena:failed ] ;
+    arena:recipe @<#RecipeShape>
+}
+
+<#PortTaskShape> {
+    rdf:type [ arena:PortTask ] ;
+    arena:priority xsd:int ;
+    arena:startTime xsd:dateTime? ;
+    arena:endTime xsd:dateTime? ;
+    arena:inputProduct @<#ProductShape>* ;
+    arena:outputProduct @<#ProductShape> ;
+    arena:taskStatus [ arena:waiting arena:active arena:done arena:failed ]
+}
