@@ -1,0 +1,1559 @@
+swagger: "2.0"
+# READ ME FIRST
+# Um shapes zur Validierung zu spezifizieren, sind in den jeweiligen Operationen ein zusätzlicher header Parameter spezifiziert
+# Diese 'shapeuri' ist vom Typ string und beinhaltet die URI in prefix-Schreibweise. Da wir uns grundsätzlich auf den
+# arena Namespace geeinigt haben, bedarf es hier keiner weiteren Definition des Namespaces. Bitte unbedingt auf Gross und
+# Kleinschreibung achten! Der header Parameter ist optional und nimmt auf Serverseite den default-wert an, welcher vom Nutzer
+# beim Ansprechen der API angepasst werden kann. Nichtsdestotrotz muss such auf vorhandene Namespaces bezogen werden
+info:
+  description: "This is the mosaik server"
+  version: "1.0.0"
+  title: "MOSAIK Sim"
+  termsOfService: "no terms"
+  contact:
+    email: "jens.weise@ovgu.de"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:8080"
+basePath: "/"
+schemes:
+  - "http"
+paths:
+  /:
+    get:
+      summary: "Provides a container of the station container, recipe container, transporter cont, shopfloor"
+      description: ""
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "Container with links to its sub-containers"
+          schema:
+            type: string
+  /productAttributes:
+    get:
+      summary: "Provides a container of the product attributes"
+      description: ""
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "Container with links to all product attributes"
+          schema:
+            type: string
+  /productAttributeKinds:
+    get:
+      summary: "Provides a container of the product attribute kinds"
+      description: ""
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "Container with links to all product attribute kinds"
+          schema:
+            type: string
+  /orders:
+    get:
+      summary: "Provides a container of the orders"
+      description: ""
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "Container with links to all orders"
+          schema:
+            type: string
+  /ports:
+    get:
+      summary: "Provides a container of the ports"
+      description: ""
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "Container with links to all ports"
+          schema:
+            type: string
+  /products:
+    get:
+      summary: "Provides a container of the products"
+      description: ""
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "Container with links to all products"
+          schema:
+            type: string
+  /productFamilies:
+    get:
+      summary: "Provides a container of the product families"
+      description: ""
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "Container with links to all product families"
+          schema:
+            type: string
+  /productInterfaces:
+    get:
+      summary: "Provides a container of the product interfaces"
+      description: ""
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "Container with links to all product interfaces"
+          schema:
+            type: string
+  /productKinds:
+    get:
+      summary: "Provides a container of the product kinds"
+      description: ""
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "Container with links to all product kinds"
+          schema:
+            type: string
+  /recipes:
+    get:
+      summary: "Provides a container of the recipes"
+      description: ""
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "Container with links to all recipes"
+          schema:
+            type: string
+  /skills:
+    get:
+      summary: "Provides a container of the skills"
+      description: ""
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "Container with links to all skills"
+          schema:
+            type: string
+  /workstations:
+    get:
+      summary: "Provides a container of the workstations"
+      description: ""
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "Container with links to all workstations"
+          schema:
+            type: string
+  /transporters:
+    get:
+      summary: "Provides a container of the transporters"
+      description: ""
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "Container with links to all transporters"
+          schema:
+            type: string
+  /shopfloor:
+    get:
+      summary: "Provides the shopfloor data"
+      description: "SizeX, SizeY"
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the shopfloor"
+          schema:
+            type: string
+  /simulation/{action}:
+    put:
+      summary: "Start or stop the simulation"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "action"
+          description: "Action of the Simulation"
+          required: true
+      responses:
+        "204":
+          description: "The specified property was changed"
+          schema:
+            type: string
+        "404":
+          description: "Action unknown."
+  /shopfloor/tile:
+    get:
+      summary: "Get the affordances of a specific coordinate"
+      description: ""
+      parameters:
+        - in: "query"
+          type: "integer"
+          name: "x"
+          description: "X-Coordinate"
+          required: true
+        - in: "query"
+          type: "integer"
+          name: "y"
+          description: "Y-Coordinate"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the affordances of the specified coordinate"
+          schema:
+            type: string
+  /indicators:
+    get:
+      summary: "Provides a container of the indicators"
+      description: ""
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "Container with links to all indicators"
+          schema:
+            type: string
+  /indicators/{indicatorId}:
+    get:
+      summary: "Provides data of a specific indicator"
+      description: "Requesting an indicator results in a response giving the current value of that indicator."
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "indicatorId"
+          description: "Name of the indicator"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the indicator and its value"
+          schema:
+            type: string
+        "404":
+          description: "Indicator not found"
+  /productAttributes/{productAttributeId}:
+    get:
+      summary: "Provides data of a specific product attribute"
+      description: "is of product attribute kind, has value"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "productAttributeId"
+          description: "Name of the product attribute"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the product attribute"
+          schema:
+            type: string
+        "404":
+          description: "Product attribute not found"
+  /productAttributeKinds/{productAttributeKindId}:
+    get:
+      summary: "Provides data of a specific product attribute kind"
+      description: "Is of a certain type and is or is not stackable"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "productAttributeKindId"
+          description: "Name of the product attribute kind"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the product attribute kind"
+          schema:
+            type: string
+        "404":
+          description: "Product attribute kind not found"
+  /orders/{orderId}:
+    get:
+      summary: "Provides data of a specific order"
+      description: "Requires a product of a specific product kind, requires it to contain other specific product kinds, requires specific attributes, and has a deadline"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "orderId"
+          description: "Name of the order"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the order"
+          schema:
+            type: string
+        "404":
+          description: "Order not found"
+  /ports/{portId}:
+    get:
+      summary: "Provides data of a specific port"
+      description: "Has a certain product handling capacity"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "portId"
+          description: "Name of the port"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the port"
+          schema:
+            type: string
+        "404":
+          description: "Port not found"
+  /ports/{portId}/tasks:
+    get:
+      summary: "Provides a container of the tasks of a specific port"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "portId"
+          description: "Id of the port"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the container with the links to the port's tasks"
+          schema:
+            type: string
+        "404":
+          description: "port not found"
+    post:
+      summary: "Create a new task inside the specified task container."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "portId"
+          description: "Id of the port"
+          required: true
+        - in: "body"
+          name: "taskParameters"
+          description: "RDF of the task"
+          schema:
+            type: string
+        # Bitte beachten, dass die jeweiligen default Werte in der konkreten Implementierung auch übernommen werden!
+        - name: "shapeuri"
+          in: "header"
+          required: false
+          type: string
+          default: "https://solid.ti.rw.fau.de/public/shapes/arena#PortTaskShape" # Unbedingt auf Gross/Kleinschreibung achten!
+      consumes:
+        - "text/turtle"
+      responses:
+        "201":
+          headers:
+            Location:
+              type: "string"
+              description: "URI of the newly created task"
+          description: "The specified task was created"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "port not found."
+
+  /ports/{portId}/tasks/{taskId}:
+    get:
+      summary: "Provides the task's data of a specific port"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "portId"
+          description: "Id of the port"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "taskId"
+          description: "Id of the task"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the specified port's task"
+          schema:
+            type: string
+        "404":
+          description: "port or task not found."
+    put:
+      summary: "Change the specified task of the specified port."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "portId"
+          description: "Id of the port"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "taskId"
+          description: "Id of the task"
+          required: true
+        - in: "body"
+          name: "taskParameters"
+          description: "RDF of the task"
+          schema:
+            type: string
+        # Bitte beachten, dass die jeweiligen default Werte in der konkreten Implementierung auch übernommen werden!
+        - name: "shapeuri"
+          in: "header"
+          required: false
+          type: string
+          default: "https://solid.ti.rw.fau.de/public/shapes/arena#PortTaskShape" # Unbedingt auf Gross/Kleinschreibung achten!
+      consumes:
+        - "text/turtle"
+      responses:
+        "204":
+          description: "The specified task was changed"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "port or task not found."
+    delete:
+      summary: "Delete the property"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "portId"
+          description: "Id of the port"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "taskId"
+          description: "Id of the task"
+          required: true
+      responses:
+        "204":
+          description: "The task was deleted"
+  /products/{productId}:
+    get:
+      summary: "Provides data of a specific product"
+      description: "Is of a certain product kind, has a location x and a location y, and was built from specific other products"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "productId"
+          description: "Name of the product"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the product"
+          schema:
+            type: string
+        "404":
+          description: "Product not found"
+  /productFamilies/{productFamilyId}:
+    get:
+      summary: "Provides data of a specific product family"
+      description: "A product family is merely a group and has no properties except it's name"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "productFamilyId"
+          description: "Name of the product family"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the product family"
+          schema:
+            type: string
+        "404":
+          description: "Product family not found"
+  /productInterfaces/{productInterfaceId}:
+    get:
+      summary: "Provides data of a specific product interface"
+      description: "Has a list of compatible product kinds"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "productInterfaceId"
+          description: "Name of the product interface"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the product interface"
+          schema:
+            type: string
+        "404":
+          description: "Product interface not found"
+  /productKinds/{productKindId}:
+    get:
+      summary: "Provides data of a specific product kind"
+      description: "Can belong to a certain product family, has lists of product interfaces and product attributes"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "productKindId"
+          description: "Name of the product kind"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the product kind"
+          schema:
+            type: string
+        "404":
+          description: "Product kind not found"
+  /recipes/{recipeId}:
+    get:
+      summary: "Provides data of a specific recipe"
+      description: "Requires product families, requires product kinds, requires skills, yields product kind, base processing time"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "recipeId"
+          description: "Name of the recipe"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the recipe"
+          schema:
+            type: string
+        "404":
+          description: "Recipe not found"
+  /skills/{skillId}:
+    get:
+      summary: "Provides data of a specific skill"
+      description: "A skill has no properties besides its name"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "skillId"
+          description: "Name of the skill"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the skill"
+          schema:
+            type: string
+        "404":
+          description: "Skill not found"
+  /workstations/{workstationId}:
+    get:
+      summary: "Provides data of a specific workstation"
+      description: "locationX, locationY, Skills, Status, Input port, output port; associated to a workstation: container for properties, cont for affordances, cont for tasks"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the workstation"
+          schema:
+            type: string
+        "404":
+          description: "workstation not found"
+  /workstations/{workstationId}/properties:
+    get:
+      summary: "Provides a container of the properties of a specific workstation"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the container with the links to the workstation's properties"
+          schema:
+            type: string
+        "404":
+          description: "Workstation not found"
+    post:
+      summary: "Create a new property inside the specified property container."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+      consumes:
+        - "text/turtle"
+      produces:
+        - "text/turtle"
+      responses:
+        "201":
+          headers:
+            Location:
+              type: "string"
+              description: "URI of the newly created property"
+          description: "The specified property was created"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "Workstation not found."
+
+  /workstations/{workstationId}/properties/{propertyId}:
+    get:
+      summary: "Provides the property's data of a specific workstation"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "propertyId"
+          description: "Id of the property"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the specified workstation's property"
+          schema:
+            type: string
+        "404":
+          description: "Workstation or property not found."
+    put:
+      summary: "Change the specified property of the specified workstation."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "propertyId"
+          description: "Id of the property"
+          required: true
+      consumes:
+        - "text/turtle"
+      responses:
+        "204":
+          description: "The specified property was changed"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "Workstation or property not found."
+    delete:
+      summary: "Delete the property"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "propertyId"
+          description: "Id of the property"
+          required: true
+      responses:
+        "204":
+          description: "The property was deleted"
+
+  /workstations/{workstationId}/information:
+    get:
+      summary: "Provides a container of the information of a specific workstation"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the container with the links to the workstation's information"
+          schema:
+            type: string
+        "404":
+          description: "Workstation not found"
+    post:
+      summary: "Create a new information inside the specified information container."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+        - in: "body"
+          name: "informationParameters"
+          description: "Parameters of the information"
+          schema:
+            type: string
+      consumes:
+        - "text/turtle"
+      produces:
+        - "text/turtle"
+      responses:
+        "201":
+          headers:
+            Location:
+              type: "string"
+              description: "URI of the newly created information"
+          description: "The specified information was created"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "Workstation not found."
+
+  /workstations/{workstationId}/information/{informationId}:
+    get:
+      summary: "Provides the information of a specific workstation"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "informationId"
+          description: "Id of the affordance"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the specified workstation's affordance"
+          schema:
+            type: string
+        "404":
+          description: "Workstation or affordance not found."
+    put:
+      summary: "Change the specified affordance of the specified workstation."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "informationId"
+          description: "Id of the affordance"
+          required: true
+        - in: "body"
+          name: "affordanceParameters"
+          description: "Parameters of the affordance"
+          schema:
+            type: string
+      consumes:
+        - "text/turtle"
+      responses:
+        "204":
+          description: "The specified affordance was changed"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "Workstation or affordance not found."
+    delete:
+      summary: "Delete the property"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "informationId"
+          description: "Id of the affordance"
+          required: true
+      responses:
+        "204":
+          description: "The affordance was deleted"
+
+  /workstations/{workstationId}/tasks:
+    get:
+      summary: "Provides a container of the tasks of a specific workstation"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the container with the links to the workstation's tasks"
+          schema:
+            type: string
+        "404":
+          description: "Workstation not found"
+    post:
+      summary: "Create a new task inside the specified task container."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+        - in: "body"
+          name: "taskParameters"
+          description: "RDF of the task"
+          schema:
+            type: string
+        # Bitte beachten, dass die jeweiligen default Werte in der konkreten Implementierung auch übernommen werden!
+        - name: "shapeuri"
+          in: "header"
+          required: false
+          type: string
+          default: "https://solid.ti.rw.fau.de/public/shapes/arena#WorkstationTaskShape" # Unbedingt auf Gross/Kleinschreibung achten!
+      consumes:
+        - "text/turtle"
+      produces:
+        - "text/turtle"
+      responses:
+        "201":
+          headers:
+            Location:
+              type: "string"
+              description: "URI of the newly created task"
+          description: "The specified task was created"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "Workstation not found."
+
+  /workstations/{workstationId}/tasks/{taskId}:
+    get:
+      summary: "Provides the task's data of a specific transporter"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "taskId"
+          description: "Id of the task"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the specified transporter's task"
+          schema:
+            type: string
+        "404":
+          description: "transporter or task not found."
+    put:
+      summary: "Change the specified task of the specified transporter."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "taskId"
+          description: "Id of the task"
+          required: true
+        - in: "body"
+          name: "taskParameters"
+          description: "RDF of the task"
+          schema:
+            type: string
+        # Bitte beachten, dass die jeweiligen default Werte in der konkreten Implementierung auch übernommen werden!
+        - name: "shapeuri"
+          in: "header"
+          required: false
+          type: string
+          default: "https://solid.ti.rw.fau.de/public/shapes/arena#WorkstationTaskShape" # Unbedingt auf Gross/Kleinschreibung achten!
+      consumes:
+        - "text/turtle"
+      responses:
+        "204":
+          description: "The specified task was changed"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "transporter or task not found."
+    delete:
+      summary: "Delete the property"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "taskId"
+          description: "Id of the task"
+          required: true
+      responses:
+        "204":
+          description: "The task was deleted"
+
+  /workstations/{workstationId}/events:
+    get:
+      summary: "Provides a container of the events of a specific workstation"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the container with the links to the workstation's events"
+          schema:
+            type: string
+        "404":
+          description: "Workstation not found"
+    post:
+      summary: "Create a new event inside the specified event container."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+        - in: "body"
+          name: "eventParameters"
+          description: "Parameters of the event"
+          schema:
+            type: string
+      consumes:
+        - "text/turtle"
+      produces:
+        - "text/turtle"
+      responses:
+        "201":
+          headers:
+            Location:
+              type: "string"
+              description: "URI of the newly created event"
+          description: "The specified event was created"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "Workstation not found."
+
+  /workstations/{workstationId}/events/{eventId}:
+    get:
+      summary: "Provides the event's data of a specific workstation"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "eventId"
+          description: "Id of the event"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the specified workstation's event"
+          schema:
+            type: string
+        "404":
+          description: "Workstation or task not found."
+    put:
+      summary: "Change the specified event of the specified workstation."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "eventId"
+          description: "Id of the event"
+          required: true
+        - in: "body"
+          name: "eventParameters"
+          description: "Parameters of the event"
+          schema:
+            type: string
+      consumes:
+        - "text/turtle"
+      responses:
+        "204":
+          description: "The specified task was changed"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "Workstation or task not found."
+    delete:
+      summary: "Delete the property"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "workstationId"
+          description: "Id of the workstation"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "eventId"
+          description: "Id of the event"
+          required: true
+      responses:
+        "204":
+          description: "The event was deleted"
+  /transporters/{transporterId}:
+    get:
+      summary: "Provides data of a specific transporter"
+      description: "locationX, locationY, Skills, Status, Input port, output port; associated to a transporter: container for properties, cont for affordances, cont for tasks"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+          # Bitte beachten, dass die jeweiligen default Werte in der konkreten Implementierung auch übernommen werden!
+        - name: "shapeuri"
+          in: "header"
+          required: false
+          type: string
+          default: "https://solid.ti.rw.fau.de/public/shapes/arena#TransporterShape" # Unbedingt auf Gross/Kleinschreibung achten!
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the transporter"
+          schema:
+            type: string
+        "404":
+          description: "transporter not found"
+  /transporters/{transporterId}/properties:
+    get:
+      summary: "Provides a container of the properties of a specific transporter"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the container with the links to the transporter's properties"
+          schema:
+            type: string
+        "404":
+          description: "transporter not found"
+    post:
+      summary: "Create a new property inside the specified property container."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+      consumes:
+        - "text/turtle"
+      produces:
+        - "text/turtle"
+      responses:
+        "201":
+          headers:
+            Location:
+              type: "string"
+              description: "URI of the newly created property"
+          description: "The specified property was created"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "transporter not found."
+
+  /transporters/{transporterId}/properties/{propertyId}:
+    get:
+      summary: "Provides the property's data of a specific transporter"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "propertyId"
+          description: "Id of the property"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the specified transporter's property"
+          schema:
+            type: string
+        "404":
+          description: "transporter or property not found."
+    put:
+      summary: "Change the specified property of the specified transporter."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "propertyId"
+          description: "Id of the property"
+          required: true
+        - in: "body"
+          name: "propertyParameters"
+          description: "Parameters of the property"
+          schema:
+            type: string
+      consumes:
+        - "text/turtle"
+      responses:
+        "204":
+          description: "The specified property was changed"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "transporter or property not found."
+    delete:
+      summary: "Delete the property"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "propertyId"
+          description: "Id of the property"
+          required: true
+      responses:
+        "204":
+          description: "The property was deleted"
+
+  /transporters/{transporterId}/information:
+    get:
+      summary: "Provides a container of the information of a specific transporter"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the container with the links to the transporter's affordances"
+          schema:
+            type: string
+        "404":
+          description: "transporter not found"
+    post:
+      summary: "Create a new information inside the specified information container."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "body"
+          name: "informationParameters"
+          description: "Parameters of the information"
+          schema:
+            type: string
+      consumes:
+        - "text/turtle"
+      produces:
+        - "text/turtle"
+      responses:
+        "201":
+          headers:
+            Location:
+              type: "string"
+              description: "URI of the newly created information"
+          description: "The specified information was created"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "transporter not found."
+
+  /transporters/{transporterId}/information/{informationId}:
+    get:
+      summary: "Provides the information's data of a specific transporter"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "informationId"
+          description: "Id of the information"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the specified transporter's information"
+          schema:
+            type: string
+        "404":
+          description: "transporter or information not found."
+    put:
+      summary: "Change the specified information of the specified transporter."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "informationId"
+          description: "Id of the information"
+          required: true
+        - in: "body"
+          name: "informationParameters"
+          description: "Parameters of the information"
+          schema:
+            type: string
+      produces:
+        - "text/turtle"
+      consumes:
+        - "text/turtle"
+      responses:
+        "204":
+          description: "The specified information was changed"
+          schema:
+            type: string
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "transporter or information not found."
+    delete:
+      summary: "Delete the property"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "informationId"
+          description: "Id of the affordance"
+          required: true
+      responses:
+        "204":
+          description: "The information was deleted"
+
+  /transporters/{transporterId}/tasks:
+    get:
+      summary: "Provides a container of the tasks of a specific transporter"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the container with the links to the transporter's tasks"
+          schema:
+            type: string
+        "404":
+          description: "transporter not found"
+    post:
+      summary: "Create a new task inside the specified task container."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "body"
+          name: "taskParameters"
+          description: "RDF of the task"
+          schema:
+            type: string
+        # Bitte beachten, dass die jeweiligen default Werte in der konkreten Implementierung auch übernommen werden!
+        - name: "shapeuri"
+          in: "header"
+          required: false
+          type: string
+          default: "https://solid.ti.rw.fau.de/public/shapes/arena#TransporterTaskShape" # Unbedingt auf Gross/Kleinschreibung achten!
+      consumes:
+        - "text/turtle"
+      responses:
+        "201":
+          headers:
+            Location:
+              type: "string"
+              description: "URI of the newly created task"
+          description: "The specified task was created"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "transporter not found."
+
+  /transporters/{transporterId}/tasks/{taskId}:
+    get:
+      summary: "Provides the task's data of a specific transporter"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "taskId"
+          description: "Id of the task"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the specified transporter's task"
+          schema:
+            type: string
+        "404":
+          description: "transporter or task not found."
+    put:
+      summary: "Change the specified task of the specified transporter."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "taskId"
+          description: "Id of the task"
+          required: true
+        - in: "body"
+          name: "taskParameters"
+          description: "RDF of the task"
+          schema:
+            type: string
+        # Bitte beachten, dass die jeweiligen default Werte in der konkreten Implementierung auch übernommen werden!
+        - name: "shapeuri"
+          in: "header"
+          required: false
+          type: string
+          default: "https://solid.ti.rw.fau.de/public/shapes/arena#TransporterTaskShape" # Unbedingt auf Gross/Kleinschreibung achten!
+      consumes:
+        - "text/turtle"
+      responses:
+        "204":
+          description: "The specified task was changed"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "transporter or task not found."
+    delete:
+      summary: "Delete the property"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "taskId"
+          description: "Id of the task"
+          required: true
+      responses:
+        "204":
+          description: "The task was deleted"
+
+  /transporters/{transporterId}/events:
+    get:
+      summary: "Provides a container of the events of a specific transporter"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the container with the links to the transporter's events"
+          schema:
+            type: string
+        "404":
+          description: "transporter not found"
+    post:
+      summary: "Create a new event inside the specified event container."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "body"
+          name: "eventParameters"
+          description: "Parameters of the event"
+          schema:
+            type: string
+      consumes:
+        - "text/turtle"
+      produces:
+        - "text/turtle"
+      responses:
+        "201":
+          headers:
+            Location:
+              type: "string"
+              description: "URI of the newly created event"
+          description: "The specified event was created"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "transporter not found."
+
+  /transporters/{transporterId}/events/{eventId}:
+    get:
+      summary: "Provides the event's data of a specific transporter"
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "eventId"
+          description: "Id of the event"
+          required: true
+      produces:
+        - "text/turtle"
+      responses:
+        "200":
+          description: "RDF of the specified transporter's event"
+          schema:
+            type: string
+        "404":
+          description: "transporter or event not found."
+    put:
+      summary: "Change the specified event of the specified transporter."
+      description: ""
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "eventId"
+          description: "Id of the event"
+          required: true
+        - in: "body"
+          name: "eventParameters"
+          description: "Parameters of the event"
+          schema:
+            type: string
+      consumes:
+        - "text/turtle"
+      responses:
+        "204":
+          description: "The specified event was changed"
+        "400":
+          description: "Invalid RDF."
+        "404":
+          description: "transporter or event not found."
+    delete:
+      summary: "Delete the property"
+      parameters:
+        - in: "path"
+          type: "string"
+          name: "transporterId"
+          description: "Id of the transporter"
+          required: true
+        - in: "path"
+          type: "string"
+          name: "eventId"
+          description: "Id of the event"
+          required: true
+      responses:
+        "204":
+          description: "The event was deleted"
