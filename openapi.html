@@ -1,0 +1,3474 @@
+<!doctype html>
+<html>
+  <head>
+    <title>MOSAIK Sim</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>MOSAIK Sim</h1>
+    <div class="app-desc">This is the mosaik server</div>
+    <div class="app-desc">More information: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a></div>
+    <div class="app-desc">Contact Info: <a href="jens.weise@ovgu.de">jens.weise@ovgu.de</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:</div>
+    <div class="license-info">Apache 2.0</div>
+    <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Default">Default</a></h4>
+  <ul>
+  <li><a href="#indicatorsGet"><code><span class="http-method">get</span> /indicators</code></a></li>
+  <li><a href="#indicatorsIndicatorIdGet"><code><span class="http-method">get</span> /indicators/{indicatorId}</code></a></li>
+  <li><a href="#ordersGet"><code><span class="http-method">get</span> /orders</code></a></li>
+  <li><a href="#ordersOrderIdGet"><code><span class="http-method">get</span> /orders/{orderId}</code></a></li>
+  <li><a href="#portsGet"><code><span class="http-method">get</span> /ports</code></a></li>
+  <li><a href="#portsPortIdGet"><code><span class="http-method">get</span> /ports/{portId}</code></a></li>
+  <li><a href="#portsPortIdTasksGet"><code><span class="http-method">get</span> /ports/{portId}/tasks</code></a></li>
+  <li><a href="#portsPortIdTasksPost"><code><span class="http-method">post</span> /ports/{portId}/tasks</code></a></li>
+  <li><a href="#portsPortIdTasksTaskIdDelete"><code><span class="http-method">delete</span> /ports/{portId}/tasks/{taskId}</code></a></li>
+  <li><a href="#portsPortIdTasksTaskIdGet"><code><span class="http-method">get</span> /ports/{portId}/tasks/{taskId}</code></a></li>
+  <li><a href="#portsPortIdTasksTaskIdPut"><code><span class="http-method">put</span> /ports/{portId}/tasks/{taskId}</code></a></li>
+  <li><a href="#productAttributeKindsGet"><code><span class="http-method">get</span> /productAttributeKinds</code></a></li>
+  <li><a href="#productAttributeKindsProductAttributeKindIdGet"><code><span class="http-method">get</span> /productAttributeKinds/{productAttributeKindId}</code></a></li>
+  <li><a href="#productAttributesGet"><code><span class="http-method">get</span> /productAttributes</code></a></li>
+  <li><a href="#productAttributesProductAttributeIdGet"><code><span class="http-method">get</span> /productAttributes/{productAttributeId}</code></a></li>
+  <li><a href="#productFamiliesGet"><code><span class="http-method">get</span> /productFamilies</code></a></li>
+  <li><a href="#productFamiliesProductFamilyIdGet"><code><span class="http-method">get</span> /productFamilies/{productFamilyId}</code></a></li>
+  <li><a href="#productInterfacesGet"><code><span class="http-method">get</span> /productInterfaces</code></a></li>
+  <li><a href="#productInterfacesProductInterfaceIdGet"><code><span class="http-method">get</span> /productInterfaces/{productInterfaceId}</code></a></li>
+  <li><a href="#productKindsGet"><code><span class="http-method">get</span> /productKinds</code></a></li>
+  <li><a href="#productKindsProductKindIdGet"><code><span class="http-method">get</span> /productKinds/{productKindId}</code></a></li>
+  <li><a href="#productsGet"><code><span class="http-method">get</span> /products</code></a></li>
+  <li><a href="#productsProductIdGet"><code><span class="http-method">get</span> /products/{productId}</code></a></li>
+  <li><a href="#recipesGet"><code><span class="http-method">get</span> /recipes</code></a></li>
+  <li><a href="#recipesRecipeIdGet"><code><span class="http-method">get</span> /recipes/{recipeId}</code></a></li>
+  <li><a href="#rootGet"><code><span class="http-method">get</span> /</code></a></li>
+  <li><a href="#shopfloorGet"><code><span class="http-method">get</span> /shopfloor</code></a></li>
+  <li><a href="#shopfloorTileGet"><code><span class="http-method">get</span> /shopfloor/tile</code></a></li>
+  <li><a href="#simulationActionPut"><code><span class="http-method">put</span> /simulation/{action}</code></a></li>
+  <li><a href="#skillsGet"><code><span class="http-method">get</span> /skills</code></a></li>
+  <li><a href="#skillsSkillIdGet"><code><span class="http-method">get</span> /skills/{skillId}</code></a></li>
+  <li><a href="#transportersGet"><code><span class="http-method">get</span> /transporters</code></a></li>
+  <li><a href="#transportersTransporterIdEventsEventIdDelete"><code><span class="http-method">delete</span> /transporters/{transporterId}/events/{eventId}</code></a></li>
+  <li><a href="#transportersTransporterIdEventsEventIdGet"><code><span class="http-method">get</span> /transporters/{transporterId}/events/{eventId}</code></a></li>
+  <li><a href="#transportersTransporterIdEventsEventIdPut"><code><span class="http-method">put</span> /transporters/{transporterId}/events/{eventId}</code></a></li>
+  <li><a href="#transportersTransporterIdEventsGet"><code><span class="http-method">get</span> /transporters/{transporterId}/events</code></a></li>
+  <li><a href="#transportersTransporterIdEventsPost"><code><span class="http-method">post</span> /transporters/{transporterId}/events</code></a></li>
+  <li><a href="#transportersTransporterIdGet"><code><span class="http-method">get</span> /transporters/{transporterId}</code></a></li>
+  <li><a href="#transportersTransporterIdInformationGet"><code><span class="http-method">get</span> /transporters/{transporterId}/information</code></a></li>
+  <li><a href="#transportersTransporterIdInformationInformationIdDelete"><code><span class="http-method">delete</span> /transporters/{transporterId}/information/{informationId}</code></a></li>
+  <li><a href="#transportersTransporterIdInformationInformationIdGet"><code><span class="http-method">get</span> /transporters/{transporterId}/information/{informationId}</code></a></li>
+  <li><a href="#transportersTransporterIdInformationInformationIdPut"><code><span class="http-method">put</span> /transporters/{transporterId}/information/{informationId}</code></a></li>
+  <li><a href="#transportersTransporterIdInformationPost"><code><span class="http-method">post</span> /transporters/{transporterId}/information</code></a></li>
+  <li><a href="#transportersTransporterIdPropertiesGet"><code><span class="http-method">get</span> /transporters/{transporterId}/properties</code></a></li>
+  <li><a href="#transportersTransporterIdPropertiesPost"><code><span class="http-method">post</span> /transporters/{transporterId}/properties</code></a></li>
+  <li><a href="#transportersTransporterIdPropertiesPropertyIdDelete"><code><span class="http-method">delete</span> /transporters/{transporterId}/properties/{propertyId}</code></a></li>
+  <li><a href="#transportersTransporterIdPropertiesPropertyIdGet"><code><span class="http-method">get</span> /transporters/{transporterId}/properties/{propertyId}</code></a></li>
+  <li><a href="#transportersTransporterIdPropertiesPropertyIdPut"><code><span class="http-method">put</span> /transporters/{transporterId}/properties/{propertyId}</code></a></li>
+  <li><a href="#transportersTransporterIdTasksGet"><code><span class="http-method">get</span> /transporters/{transporterId}/tasks</code></a></li>
+  <li><a href="#transportersTransporterIdTasksPost"><code><span class="http-method">post</span> /transporters/{transporterId}/tasks</code></a></li>
+  <li><a href="#transportersTransporterIdTasksTaskIdDelete"><code><span class="http-method">delete</span> /transporters/{transporterId}/tasks/{taskId}</code></a></li>
+  <li><a href="#transportersTransporterIdTasksTaskIdGet"><code><span class="http-method">get</span> /transporters/{transporterId}/tasks/{taskId}</code></a></li>
+  <li><a href="#transportersTransporterIdTasksTaskIdPut"><code><span class="http-method">put</span> /transporters/{transporterId}/tasks/{taskId}</code></a></li>
+  <li><a href="#workstationsGet"><code><span class="http-method">get</span> /workstations</code></a></li>
+  <li><a href="#workstationsWorkstationIdEventsEventIdDelete"><code><span class="http-method">delete</span> /workstations/{workstationId}/events/{eventId}</code></a></li>
+  <li><a href="#workstationsWorkstationIdEventsEventIdGet"><code><span class="http-method">get</span> /workstations/{workstationId}/events/{eventId}</code></a></li>
+  <li><a href="#workstationsWorkstationIdEventsEventIdPut"><code><span class="http-method">put</span> /workstations/{workstationId}/events/{eventId}</code></a></li>
+  <li><a href="#workstationsWorkstationIdEventsGet"><code><span class="http-method">get</span> /workstations/{workstationId}/events</code></a></li>
+  <li><a href="#workstationsWorkstationIdEventsPost"><code><span class="http-method">post</span> /workstations/{workstationId}/events</code></a></li>
+  <li><a href="#workstationsWorkstationIdGet"><code><span class="http-method">get</span> /workstations/{workstationId}</code></a></li>
+  <li><a href="#workstationsWorkstationIdInformationGet"><code><span class="http-method">get</span> /workstations/{workstationId}/information/</code></a></li>
+  <li><a href="#workstationsWorkstationIdInformationInformationIdDelete"><code><span class="http-method">delete</span> /workstations/{workstationId}/information/{informationId}</code></a></li>
+  <li><a href="#workstationsWorkstationIdInformationInformationIdGet"><code><span class="http-method">get</span> /workstations/{workstationId}/information/{informationId}</code></a></li>
+  <li><a href="#workstationsWorkstationIdInformationInformationIdPut"><code><span class="http-method">put</span> /workstations/{workstationId}/information/{informationId}</code></a></li>
+  <li><a href="#workstationsWorkstationIdInformationPost"><code><span class="http-method">post</span> /workstations/{workstationId}/information/</code></a></li>
+  <li><a href="#workstationsWorkstationIdPropertiesGet"><code><span class="http-method">get</span> /workstations/{workstationId}/properties</code></a></li>
+  <li><a href="#workstationsWorkstationIdPropertiesPost"><code><span class="http-method">post</span> /workstations/{workstationId}/properties</code></a></li>
+  <li><a href="#workstationsWorkstationIdPropertiesPropertyIdDelete"><code><span class="http-method">delete</span> /workstations/{workstationId}/properties/{propertyId}</code></a></li>
+  <li><a href="#workstationsWorkstationIdPropertiesPropertyIdGet"><code><span class="http-method">get</span> /workstations/{workstationId}/properties/{propertyId}</code></a></li>
+  <li><a href="#workstationsWorkstationIdPropertiesPropertyIdPut"><code><span class="http-method">put</span> /workstations/{workstationId}/properties/{propertyId}</code></a></li>
+  <li><a href="#workstationsWorkstationIdTasksGet"><code><span class="http-method">get</span> /workstations/{workstationId}/tasks</code></a></li>
+  <li><a href="#workstationsWorkstationIdTasksPost"><code><span class="http-method">post</span> /workstations/{workstationId}/tasks</code></a></li>
+  <li><a href="#workstationsWorkstationIdTasksTaskIdDelete"><code><span class="http-method">delete</span> /workstations/{workstationId}/tasks/{taskId}</code></a></li>
+  <li><a href="#workstationsWorkstationIdTasksTaskIdGet"><code><span class="http-method">get</span> /workstations/{workstationId}/tasks/{taskId}</code></a></li>
+  <li><a href="#workstationsWorkstationIdTasksTaskIdPut"><code><span class="http-method">put</span> /workstations/{workstationId}/tasks/{taskId}</code></a></li>
+  </ul>
+
+  <h1><a name="Default">Default</a></h1>
+  <div class="method"><a name="indicatorsGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /indicators</code></pre></div>
+    <div class="method-summary">Provides a container of the indicators (<span class="nickname">indicatorsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Container with links to all indicators
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="indicatorsIndicatorIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /indicators/{indicatorId}</code></pre></div>
+    <div class="method-summary">Provides data of a specific indicator (<span class="nickname">indicatorsIndicatorIdGet</span>)</div>
+    <div class="method-notes">Requesting an indicator results in a response giving the current value of that indicator.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">indicatorId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the indicator default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the indicator and its value
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Indicator not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="ordersGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /orders</code></pre></div>
+    <div class="method-summary">Provides a container of the orders (<span class="nickname">ordersGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Container with links to all orders
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="ordersOrderIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /orders/{orderId}</code></pre></div>
+    <div class="method-summary">Provides data of a specific order (<span class="nickname">ordersOrderIdGet</span>)</div>
+    <div class="method-notes">Requires a product of a specific product kind, requires it to contain other specific product kinds, requires specific attributes, and has a deadline</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">orderId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the order default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the order
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Order not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="portsGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /ports</code></pre></div>
+    <div class="method-summary">Provides a container of the ports (<span class="nickname">portsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Container with links to all ports
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="portsPortIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /ports/{portId}</code></pre></div>
+    <div class="method-summary">Provides data of a specific port (<span class="nickname">portsPortIdGet</span>)</div>
+    <div class="method-notes">Has a certain product handling capacity</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">portId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the port default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the port
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Port not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="portsPortIdTasksGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /ports/{portId}/tasks</code></pre></div>
+    <div class="method-summary">Provides a container of the tasks of a specific port (<span class="nickname">portsPortIdTasksGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">portId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the port default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the container with the links to the port's tasks
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    port not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="portsPortIdTasksPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /ports/{portId}/tasks</code></pre></div>
+    <div class="method-summary">Create a new task inside the specified task container. (<span class="nickname">portsPortIdTasksPost</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">portId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the port default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">taskParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      <div class="param">shapeuri (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Header Parameter</span> &mdash;  default: https://solid.ti.rw.fau.de/public/shapes/arena#PortTaskShape </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    The specified task was created
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    port not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="portsPortIdTasksTaskIdDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /ports/{portId}/tasks/{taskId}</code></pre></div>
+    <div class="method-summary">Delete the property (<span class="nickname">portsPortIdTasksTaskIdDelete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">portId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the port default: null </div><div class="param">taskId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the task default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The task was deleted
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="portsPortIdTasksTaskIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /ports/{portId}/tasks/{taskId}</code></pre></div>
+    <div class="method-summary">Provides the task's data of a specific port (<span class="nickname">portsPortIdTasksTaskIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">portId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the port default: null </div><div class="param">taskId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the task default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the specified port's task
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    port or task not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="portsPortIdTasksTaskIdPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /ports/{portId}/tasks/{taskId}</code></pre></div>
+    <div class="method-summary">Change the specified task of the specified port. (<span class="nickname">portsPortIdTasksTaskIdPut</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">portId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the port default: null </div><div class="param">taskId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the task default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">taskParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      <div class="param">shapeuri (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Header Parameter</span> &mdash;  default: https://solid.ti.rw.fau.de/public/shapes/arena#PortTaskShape </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The specified task was changed
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    port or task not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productAttributeKindsGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /productAttributeKinds</code></pre></div>
+    <div class="method-summary">Provides a container of the product attribute kinds (<span class="nickname">productAttributeKindsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Container with links to all product attribute kinds
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productAttributeKindsProductAttributeKindIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /productAttributeKinds/{productAttributeKindId}</code></pre></div>
+    <div class="method-summary">Provides data of a specific product attribute kind (<span class="nickname">productAttributeKindsProductAttributeKindIdGet</span>)</div>
+    <div class="method-notes">Is of a certain type and is or is not stackable</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">productAttributeKindId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the product attribute kind default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the product attribute kind
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Product attribute kind not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productAttributesGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /productAttributes</code></pre></div>
+    <div class="method-summary">Provides a container of the product attributes (<span class="nickname">productAttributesGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Container with links to all product attributes
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productAttributesProductAttributeIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /productAttributes/{productAttributeId}</code></pre></div>
+    <div class="method-summary">Provides data of a specific product attribute (<span class="nickname">productAttributesProductAttributeIdGet</span>)</div>
+    <div class="method-notes">is of product attribute kind, has value</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">productAttributeId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the product attribute default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the product attribute
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Product attribute not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productFamiliesGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /productFamilies</code></pre></div>
+    <div class="method-summary">Provides a container of the product families (<span class="nickname">productFamiliesGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Container with links to all product families
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productFamiliesProductFamilyIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /productFamilies/{productFamilyId}</code></pre></div>
+    <div class="method-summary">Provides data of a specific product family (<span class="nickname">productFamiliesProductFamilyIdGet</span>)</div>
+    <div class="method-notes">A product family is merely a group and has no properties except it's name</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">productFamilyId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the product family default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the product family
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Product family not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productInterfacesGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /productInterfaces</code></pre></div>
+    <div class="method-summary">Provides a container of the product interfaces (<span class="nickname">productInterfacesGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Container with links to all product interfaces
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productInterfacesProductInterfaceIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /productInterfaces/{productInterfaceId}</code></pre></div>
+    <div class="method-summary">Provides data of a specific product interface (<span class="nickname">productInterfacesProductInterfaceIdGet</span>)</div>
+    <div class="method-notes">Has a list of compatible product kinds</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">productInterfaceId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the product interface default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the product interface
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Product interface not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productKindsGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /productKinds</code></pre></div>
+    <div class="method-summary">Provides a container of the product kinds (<span class="nickname">productKindsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Container with links to all product kinds
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productKindsProductKindIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /productKinds/{productKindId}</code></pre></div>
+    <div class="method-summary">Provides data of a specific product kind (<span class="nickname">productKindsProductKindIdGet</span>)</div>
+    <div class="method-notes">Can belong to a certain product family, has lists of product interfaces and product attributes</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">productKindId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the product kind default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the product kind
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Product kind not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productsGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /products</code></pre></div>
+    <div class="method-summary">Provides a container of the products (<span class="nickname">productsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Container with links to all products
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="productsProductIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /products/{productId}</code></pre></div>
+    <div class="method-summary">Provides data of a specific product (<span class="nickname">productsProductIdGet</span>)</div>
+    <div class="method-notes">Is of a certain product kind, has a location x and a location y, and was built from specific other products</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">productId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the product default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the product
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Product not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="recipesGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /recipes</code></pre></div>
+    <div class="method-summary">Provides a container of the recipes (<span class="nickname">recipesGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Container with links to all recipes
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="recipesRecipeIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /recipes/{recipeId}</code></pre></div>
+    <div class="method-summary">Provides data of a specific recipe (<span class="nickname">recipesRecipeIdGet</span>)</div>
+    <div class="method-notes">Requires product families, requires product kinds, requires skills, yields product kind, base processing time</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">recipeId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the recipe default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the recipe
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Recipe not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="rootGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /</code></pre></div>
+    <div class="method-summary">Provides a container of the station container, recipe container, transporter cont, shopfloor (<span class="nickname">rootGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Container with links to its sub-containers
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="shopfloorGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /shopfloor</code></pre></div>
+    <div class="method-summary">Provides the shopfloor data (<span class="nickname">shopfloorGet</span>)</div>
+    <div class="method-notes">SizeX, SizeY</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the shopfloor
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="shopfloorTileGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /shopfloor/tile</code></pre></div>
+    <div class="method-summary">Get the affordances of a specific coordinate (<span class="nickname">shopfloorTileGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">x (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; X-Coordinate default: null </div><div class="param">y (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Y-Coordinate default: null </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the affordances of the specified coordinate
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="simulationActionPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /simulation/{action}</code></pre></div>
+    <div class="method-summary">Start or stop the simulation (<span class="nickname">simulationActionPut</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">action (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Action of the Simulation default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>*/*</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The specified property was changed
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Action unknown.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="skillsGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /skills</code></pre></div>
+    <div class="method-summary">Provides a container of the skills (<span class="nickname">skillsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Container with links to all skills
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="skillsSkillIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /skills/{skillId}</code></pre></div>
+    <div class="method-summary">Provides data of a specific skill (<span class="nickname">skillsSkillIdGet</span>)</div>
+    <div class="method-notes">A skill has no properties besides its name</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">skillId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of the skill default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the skill
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Skill not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /transporters</code></pre></div>
+    <div class="method-summary">Provides a container of the transporters (<span class="nickname">transportersGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Container with links to all transporters
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdEventsEventIdDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /transporters/{transporterId}/events/{eventId}</code></pre></div>
+    <div class="method-summary">Delete the property (<span class="nickname">transportersTransporterIdEventsEventIdDelete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">eventId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the event default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The event was deleted
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdEventsEventIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /transporters/{transporterId}/events/{eventId}</code></pre></div>
+    <div class="method-summary">Provides the event's data of a specific transporter (<span class="nickname">transportersTransporterIdEventsEventIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">eventId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the event default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the specified transporter's event
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    transporter or event not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdEventsEventIdPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /transporters/{transporterId}/events/{eventId}</code></pre></div>
+    <div class="method-summary">Change the specified event of the specified transporter. (<span class="nickname">transportersTransporterIdEventsEventIdPut</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">eventId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the event default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">eventParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The specified event was changed
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    transporter or event not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdEventsGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /transporters/{transporterId}/events</code></pre></div>
+    <div class="method-summary">Provides a container of the events of a specific transporter (<span class="nickname">transportersTransporterIdEventsGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the container with the links to the transporter's events
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    transporter not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdEventsPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /transporters/{transporterId}/events</code></pre></div>
+    <div class="method-summary">Create a new event inside the specified event container. (<span class="nickname">transportersTransporterIdEventsPost</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">eventParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    The specified event was created
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    transporter not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /transporters/{transporterId}</code></pre></div>
+    <div class="method-summary">Provides data of a specific transporter (<span class="nickname">transportersTransporterIdGet</span>)</div>
+    <div class="method-notes">locationX, locationY, Skills, Status, Input port, output port; associated to a transporter: container for properties, cont for affordances, cont for tasks</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      <div class="param">shapeuri (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Header Parameter</span> &mdash;  default: https://solid.ti.rw.fau.de/public/shapes/arena#TransporterShape </div>
+
+    </div>  <!-- field-items -->
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the transporter
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    transporter not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdInformationGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /transporters/{transporterId}/information</code></pre></div>
+    <div class="method-summary">Provides a container of the information of a specific transporter (<span class="nickname">transportersTransporterIdInformationGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the container with the links to the transporter's affordances
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    transporter not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdInformationInformationIdDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /transporters/{transporterId}/information/{informationId}</code></pre></div>
+    <div class="method-summary">Delete the property (<span class="nickname">transportersTransporterIdInformationInformationIdDelete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">informationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the affordance default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The information was deleted
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdInformationInformationIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /transporters/{transporterId}/information/{informationId}</code></pre></div>
+    <div class="method-summary">Provides the information's data of a specific transporter (<span class="nickname">transportersTransporterIdInformationInformationIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">informationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the information default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the specified transporter's information
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    transporter or information not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdInformationInformationIdPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /transporters/{transporterId}/information/{informationId}</code></pre></div>
+    <div class="method-summary">Change the specified information of the specified transporter. (<span class="nickname">transportersTransporterIdInformationInformationIdPut</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">informationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the information default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">informationParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The specified information was changed
+        <a href="#String">String</a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    transporter or information not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdInformationPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /transporters/{transporterId}/information</code></pre></div>
+    <div class="method-summary">Create a new information inside the specified information container. (<span class="nickname">transportersTransporterIdInformationPost</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">informationParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    The specified information was created
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    transporter not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdPropertiesGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /transporters/{transporterId}/properties</code></pre></div>
+    <div class="method-summary">Provides a container of the properties of a specific transporter (<span class="nickname">transportersTransporterIdPropertiesGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the container with the links to the transporter's properties
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    transporter not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdPropertiesPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /transporters/{transporterId}/properties</code></pre></div>
+    <div class="method-summary">Create a new property inside the specified property container. (<span class="nickname">transportersTransporterIdPropertiesPost</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    The specified property was created
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    transporter not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdPropertiesPropertyIdDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /transporters/{transporterId}/properties/{propertyId}</code></pre></div>
+    <div class="method-summary">Delete the property (<span class="nickname">transportersTransporterIdPropertiesPropertyIdDelete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">propertyId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the property default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The property was deleted
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdPropertiesPropertyIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /transporters/{transporterId}/properties/{propertyId}</code></pre></div>
+    <div class="method-summary">Provides the property's data of a specific transporter (<span class="nickname">transportersTransporterIdPropertiesPropertyIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">propertyId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the property default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the specified transporter's property
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    transporter or property not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdPropertiesPropertyIdPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /transporters/{transporterId}/properties/{propertyId}</code></pre></div>
+    <div class="method-summary">Change the specified property of the specified transporter. (<span class="nickname">transportersTransporterIdPropertiesPropertyIdPut</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">propertyId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the property default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">propertyParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The specified property was changed
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    transporter or property not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdTasksGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /transporters/{transporterId}/tasks</code></pre></div>
+    <div class="method-summary">Provides a container of the tasks of a specific transporter (<span class="nickname">transportersTransporterIdTasksGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the container with the links to the transporter's tasks
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    transporter not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdTasksPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /transporters/{transporterId}/tasks</code></pre></div>
+    <div class="method-summary">Create a new task inside the specified task container. (<span class="nickname">transportersTransporterIdTasksPost</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">taskParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      <div class="param">shapeuri (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Header Parameter</span> &mdash;  default: https://solid.ti.rw.fau.de/public/shapes/arena#TransporterTaskShape </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    The specified task was created
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    transporter not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdTasksTaskIdDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /transporters/{transporterId}/tasks/{taskId}</code></pre></div>
+    <div class="method-summary">Delete the property (<span class="nickname">transportersTransporterIdTasksTaskIdDelete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">taskId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the task default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The task was deleted
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdTasksTaskIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /transporters/{transporterId}/tasks/{taskId}</code></pre></div>
+    <div class="method-summary">Provides the task's data of a specific transporter (<span class="nickname">transportersTransporterIdTasksTaskIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">taskId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the task default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the specified transporter's task
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    transporter or task not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="transportersTransporterIdTasksTaskIdPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /transporters/{transporterId}/tasks/{taskId}</code></pre></div>
+    <div class="method-summary">Change the specified task of the specified transporter. (<span class="nickname">transportersTransporterIdTasksTaskIdPut</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">transporterId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">taskId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the task default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">taskParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      <div class="param">shapeuri (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Header Parameter</span> &mdash;  default: https://solid.ti.rw.fau.de/public/shapes/arena#TransporterTaskShape </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The specified task was changed
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    transporter or task not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workstations</code></pre></div>
+    <div class="method-summary">Provides a container of the workstations (<span class="nickname">workstationsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Container with links to all workstations
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdEventsEventIdDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workstations/{workstationId}/events/{eventId}</code></pre></div>
+    <div class="method-summary">Delete the property (<span class="nickname">workstationsWorkstationIdEventsEventIdDelete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div><div class="param">eventId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the event default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The event was deleted
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdEventsEventIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workstations/{workstationId}/events/{eventId}</code></pre></div>
+    <div class="method-summary">Provides the event's data of a specific workstation (<span class="nickname">workstationsWorkstationIdEventsEventIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div><div class="param">eventId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the event default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the specified workstation's event
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Workstation or task not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdEventsEventIdPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workstations/{workstationId}/events/{eventId}</code></pre></div>
+    <div class="method-summary">Change the specified event of the specified workstation. (<span class="nickname">workstationsWorkstationIdEventsEventIdPut</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div><div class="param">eventId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the event default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">eventParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The specified task was changed
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Workstation or task not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdEventsGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workstations/{workstationId}/events</code></pre></div>
+    <div class="method-summary">Provides a container of the events of a specific workstation (<span class="nickname">workstationsWorkstationIdEventsGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the container with the links to the workstation's events
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Workstation not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdEventsPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workstations/{workstationId}/events</code></pre></div>
+    <div class="method-summary">Create a new event inside the specified event container. (<span class="nickname">workstationsWorkstationIdEventsPost</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">eventParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    The specified event was created
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Workstation not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workstations/{workstationId}</code></pre></div>
+    <div class="method-summary">Provides data of a specific workstation (<span class="nickname">workstationsWorkstationIdGet</span>)</div>
+    <div class="method-notes">locationX, locationY, Skills, Status, Input port, output port; associated to a workstation: container for properties, cont for affordances, cont for tasks</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the workstation
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    workstation not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdInformationGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workstations/{workstationId}/information/</code></pre></div>
+    <div class="method-summary">Provides a container of the information of a specific workstation (<span class="nickname">workstationsWorkstationIdInformationGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the container with the links to the workstation's information
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Workstation not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdInformationInformationIdDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workstations/{workstationId}/information/{informationId}</code></pre></div>
+    <div class="method-summary">Delete the property (<span class="nickname">workstationsWorkstationIdInformationInformationIdDelete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div><div class="param">informationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the affordance default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The affordance was deleted
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdInformationInformationIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workstations/{workstationId}/information/{informationId}</code></pre></div>
+    <div class="method-summary">Provides the information of a specific workstation (<span class="nickname">workstationsWorkstationIdInformationInformationIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div><div class="param">informationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the affordance default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the specified workstation's affordance
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Workstation or affordance not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdInformationInformationIdPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workstations/{workstationId}/information/{informationId}</code></pre></div>
+    <div class="method-summary">Change the specified affordance of the specified workstation. (<span class="nickname">workstationsWorkstationIdInformationInformationIdPut</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div><div class="param">informationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the affordance default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">affordanceParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The specified affordance was changed
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Workstation or affordance not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdInformationPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workstations/{workstationId}/information/</code></pre></div>
+    <div class="method-summary">Create a new information inside the specified information container. (<span class="nickname">workstationsWorkstationIdInformationPost</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">informationParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    The specified information was created
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Workstation not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdPropertiesGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workstations/{workstationId}/properties</code></pre></div>
+    <div class="method-summary">Provides a container of the properties of a specific workstation (<span class="nickname">workstationsWorkstationIdPropertiesGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the container with the links to the workstation's properties
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Workstation not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdPropertiesPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workstations/{workstationId}/properties</code></pre></div>
+    <div class="method-summary">Create a new property inside the specified property container. (<span class="nickname">workstationsWorkstationIdPropertiesPost</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    The specified property was created
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Workstation not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdPropertiesPropertyIdDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workstations/{workstationId}/properties/{propertyId}</code></pre></div>
+    <div class="method-summary">Delete the property (<span class="nickname">workstationsWorkstationIdPropertiesPropertyIdDelete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div><div class="param">propertyId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the property default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The property was deleted
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdPropertiesPropertyIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workstations/{workstationId}/properties/{propertyId}</code></pre></div>
+    <div class="method-summary">Provides the property's data of a specific workstation (<span class="nickname">workstationsWorkstationIdPropertiesPropertyIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div><div class="param">propertyId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the property default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the specified workstation's property
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Workstation or property not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdPropertiesPropertyIdPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workstations/{workstationId}/properties/{propertyId}</code></pre></div>
+    <div class="method-summary">Change the specified property of the specified workstation. (<span class="nickname">workstationsWorkstationIdPropertiesPropertyIdPut</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div><div class="param">propertyId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the property default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The specified property was changed
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Workstation or property not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdTasksGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workstations/{workstationId}/tasks</code></pre></div>
+    <div class="method-summary">Provides a container of the tasks of a specific workstation (<span class="nickname">workstationsWorkstationIdTasksGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the container with the links to the workstation's tasks
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Workstation not found
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdTasksPost"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /workstations/{workstationId}/tasks</code></pre></div>
+    <div class="method-summary">Create a new task inside the specified task container. (<span class="nickname">workstationsWorkstationIdTasksPost</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the workstation default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">taskParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      <div class="param">shapeuri (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Header Parameter</span> &mdash;  default: https://solid.ti.rw.fau.de/public/shapes/arena#WorkstationTaskShape </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    The specified task was created
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Workstation not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdTasksTaskIdDelete"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /workstations/{workstationId}/tasks/{taskId}</code></pre></div>
+    <div class="method-summary">Delete the property (<span class="nickname">workstationsWorkstationIdTasksTaskIdDelete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">taskId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the task default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The task was deleted
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdTasksTaskIdGet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /workstations/{workstationId}/tasks/{taskId}</code></pre></div>
+    <div class="method-summary">Provides the task's data of a specific transporter (<span class="nickname">workstationsWorkstationIdTasksTaskIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">taskId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the task default: null </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    RDF of the specified transporter's task
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    transporter or task not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="workstationsWorkstationIdTasksTaskIdPut"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /workstations/{workstationId}/tasks/{taskId}</code></pre></div>
+    <div class="method-summary">Change the specified task of the specified transporter. (<span class="nickname">workstationsWorkstationIdTasksTaskIdPut</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">workstationId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the transporter default: null </div><div class="param">taskId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Id of the task default: null </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>text/turtle</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">taskParameters <a href="#string">string</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Request headers</h3>
+    <div class="field-items">
+      <div class="param">shapeuri (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Header Parameter</span> &mdash;  default: https://solid.ti.rw.fau.de/public/shapes/arena#WorkstationTaskShape </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    The specified task was changed
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid RDF.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    transporter or task not found.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+  </ol>
+
+  </body>
+</html>
