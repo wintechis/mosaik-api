@@ -11,9 +11,7 @@ info:
   title: "MOSAIK Sim"
   termsOfService: "no terms"
   contact:
-    email:
-      - "jens.weise@ovgu.de"
-      - "daniel.schraudner@fau.de"
+    email: "jens.weise@ovgu.de"
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
@@ -33,7 +31,7 @@ paths:
           description: "Container with links to its sub-containers"
           schema:
             type: string
-  /productAttributes:
+  /productAttributes/:
     get:
       summary: "Provides a container of the product attributes"
       description: ""
@@ -44,7 +42,7 @@ paths:
           description: "Container with links to all product attributes"
           schema:
             type: string
-  /productAttributeKinds:
+  /productAttributeKinds/:
     get:
       summary: "Provides a container of the product attribute kinds"
       description: ""
@@ -55,7 +53,7 @@ paths:
           description: "Container with links to all product attribute kinds"
           schema:
             type: string
-  /orders:
+  /orders/:
     get:
       summary: "Provides a container of the orders"
       description: ""
@@ -66,7 +64,7 @@ paths:
           description: "Container with links to all orders"
           schema:
             type: string
-  /ports:
+  /ports/:
     get:
       summary: "Provides a container of the ports"
       description: ""
@@ -77,7 +75,7 @@ paths:
           description: "Container with links to all ports"
           schema:
             type: string
-  /products:
+  /products/:
     get:
       summary: "Provides a container of the products"
       description: ""
@@ -88,7 +86,7 @@ paths:
           description: "Container with links to all products"
           schema:
             type: string
-  /productFamilies:
+  /productFamilies/:
     get:
       summary: "Provides a container of the product families"
       description: ""
@@ -99,7 +97,7 @@ paths:
           description: "Container with links to all product families"
           schema:
             type: string
-  /productInterfaces:
+  /productInterfaces/:
     get:
       summary: "Provides a container of the product interfaces"
       description: ""
@@ -110,7 +108,7 @@ paths:
           description: "Container with links to all product interfaces"
           schema:
             type: string
-  /productKinds:
+  /productKinds/:
     get:
       summary: "Provides a container of the product kinds"
       description: ""
@@ -121,7 +119,7 @@ paths:
           description: "Container with links to all product kinds"
           schema:
             type: string
-  /recipes:
+  /recipes/:
     get:
       summary: "Provides a container of the recipes"
       description: ""
@@ -132,7 +130,7 @@ paths:
           description: "Container with links to all recipes"
           schema:
             type: string
-  /skills:
+  /skills/:
     get:
       summary: "Provides a container of the skills"
       description: ""
@@ -143,7 +141,7 @@ paths:
           description: "Container with links to all skills"
           schema:
             type: string
-  /workstations:
+  /workstations/:
     get:
       summary: "Provides a container of the workstations"
       description: ""
@@ -154,7 +152,7 @@ paths:
           description: "Container with links to all workstations"
           schema:
             type: string
-  /transporters:
+  /transporters/:
     get:
       summary: "Provides a container of the transporters"
       description: ""
@@ -215,7 +213,7 @@ paths:
           description: "RDF of the affordances of the specified coordinate"
           schema:
             type: string
-  /indicators:
+  /indicators/:
     get:
       summary: "Provides a container of the indicators"
       description: ""
@@ -321,7 +319,7 @@ paths:
             type: string
         "404":
           description: "Port not found"
-  /ports/{portId}/tasks:
+  /ports/{portId}/tasks/:
     get:
       summary: "Provides a container of the tasks of a specific port"
       description: ""
@@ -581,7 +579,7 @@ paths:
             type: string
         "404":
           description: "workstation not found"
-  /workstations/{workstationId}/properties:
+  /workstations/{workstationId}/properties/:
     get:
       summary: "Provides a container of the properties of a specific workstation"
       description: ""
@@ -689,7 +687,7 @@ paths:
         "204":
           description: "The property was deleted"
 
-  /workstations/{workstationId}/information:
+  /workstations/{workstationId}/information/:
     get:
       summary: "Provides a container of the information of a specific workstation"
       description: ""
@@ -807,7 +805,7 @@ paths:
         "204":
           description: "The affordance was deleted"
 
-  /workstations/{workstationId}/tasks:
+  /workstations/{workstationId}/tasks/:
     get:
       summary: "Provides a container of the tasks of a specific workstation"
       description: ""
@@ -937,7 +935,7 @@ paths:
         "204":
           description: "The task was deleted"
 
-  /workstations/{workstationId}/events:
+  /workstations/{workstationId}/events/:
     get:
       summary: "Provides a container of the events of a specific workstation"
       description: ""
@@ -1057,7 +1055,7 @@ paths:
   /transporters/{transporterId}:
     get:
       summary: "Provides data of a specific transporter"
-      description: "locationX, locationY, Skills, Status associated to a transporter: container for properties, cont for affordances, cont for tasks"
+      description: "locationX, locationY, Skills, Status, Input port, output port; associated to a transporter: container for properties, cont for affordances, cont for tasks"
       parameters:
         - in: "path"
           type: "string"
@@ -1079,7 +1077,7 @@ paths:
             type: string
         "404":
           description: "transporter not found"
-  /transporters/{transporterId}/properties:
+  /transporters/{transporterId}/properties/:
     get:
       summary: "Provides a container of the properties of a specific transporter"
       description: ""
@@ -1192,7 +1190,7 @@ paths:
         "204":
           description: "The property was deleted"
 
-  /transporters/{transporterId}/information:
+  /transporters/{transporterId}/information/:
     get:
       summary: "Provides a container of the information of a specific transporter"
       description: ""
@@ -1314,7 +1312,7 @@ paths:
         "204":
           description: "The information was deleted"
 
-  /transporters/{transporterId}/tasks:
+  /transporters/{transporterId}/tasks/:
     get:
       summary: "Provides a container of the tasks of a specific transporter"
       description: ""
@@ -1442,7 +1440,7 @@ paths:
         "204":
           description: "The task was deleted"
 
-  /transporters/{transporterId}/events:
+  /transporters/{transporterId}/events/:
     get:
       summary: "Provides a container of the events of a specific transporter"
       description: ""
