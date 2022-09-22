@@ -11,7 +11,9 @@ info:
   title: "MOSAIK Sim"
   termsOfService: "no terms"
   contact:
-    email: "jens.weise@ovgu.de"
+    email:
+      - "jens.weise@ovgu.de"
+      - "daniel.schraudner@fau.de"
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
@@ -1055,7 +1057,7 @@ paths:
   /transporters/{transporterId}:
     get:
       summary: "Provides data of a specific transporter"
-      description: "locationX, locationY, Skills, Status, Input port, output port; associated to a transporter: container for properties, cont for affordances, cont for tasks"
+      description: "locationX, locationY, Skills, Status associated to a transporter: container for properties, cont for affordances, cont for tasks"
       parameters:
         - in: "path"
           type: "string"
